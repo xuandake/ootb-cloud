@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ootb-cloud</artifactId>
+        <groupId>org.ootb</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--子模块-->
+    <!--
+      包括: 后台管理（ootb-admin）、 监控中心(ootb-monitor)
+           代码生成(ootb-gen) 、定时任务（ootb-job），
+           分布式事务(ootb-seate)
+   -->
+
+    <artifactId>ootb-ops</artifactId>
+    <description>ootb-ops运维中心</description>
+
+
+</project>
