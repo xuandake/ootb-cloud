@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ootb-system" />
-        <module name="ootb-system-api" />
         <module name="ootb-ops" />
+        <module name="ootb-system-api" />
+        <module name="ootb-system" />
         <module name="ootb-gateway" />
         <module name="ootb-auth" />
       </profile>
