@@ -1,0 +1,20 @@
+#server:
+#  port: 8080
+
+spring:
+  application:
+    name: ootb-gateway
+  profiles:
+    ative: dev
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        #注册服务
+        server-addr: 127.0.0.1:9001
+      config:
+        #服务配置
+        server-addr: 127.0.0.1:9001
+        file-extension: yml
+
