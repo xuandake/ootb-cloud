@@ -1,0 +1,17 @@
+server:
+  port: 8082
+spring:
+  main:
+    #允许重名的bean可以被覆盖
+    allow-bean-definition-overriding: true
+  application:
+    name: ootb-auth
+  cloud:
+    nacos:
+      #nacos服务注册地址
+      discovery:
+        server-addr: 127.0.0.1:9001
+      #nacos文件配置
+      config:
+        server-addr: 127.0.0.1:9001
+        file-extension: yml
