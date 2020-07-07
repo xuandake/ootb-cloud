@@ -9,4 +9,5 @@ package com.ootb.gateway.config;
  **/
 
 public class GatewayConfiguration {
+
 }

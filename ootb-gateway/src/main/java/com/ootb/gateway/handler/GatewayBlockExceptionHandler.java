@@ -16,6 +16,13 @@ import org.springframework.context.ApplicationContext;
 
 public class GatewayBlockExceptionHandler extends DefaultErrorWebExceptionHandler {
 
+    /**
+     * @Author xdk
+     * @Description //TODO
+     * @Date 18:43 20-07-07
+     * @Param [attributes, properties, errorProperties, applicationContext]
+     * @return
+     **/
     public GatewayBlockExceptionHandler(ErrorAttributes attributes, ResourceProperties properties,
                                         ErrorProperties errorProperties, ApplicationContext applicationContext){
         super(attributes, properties, errorProperties, applicationContext);
