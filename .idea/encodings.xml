@@ -2,10 +2,13 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/demo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ootb-auth" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ootb-auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ootb-auth/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ootb-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ootb-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ootb-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ootb-gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ootb-ops" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ootb-system" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ootb-system-api" charset="UTF-8" />

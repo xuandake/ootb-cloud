@@ -32,30 +32,35 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
-        <!-- SpringCloud Ailibaba Sentinel -->
+        <!-- SpringCloud Ailibaba Sentinel 限流 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
 
-        <!-- SpringCloud Ailibaba Sentinel Gateway -->
+        <!-- SpringCloud Ailibaba Sentinel Gateway  -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
         </dependency>
 
-        <!-- Sentinel Datasource Nacos -->
+        <!-- Sentinel Datasource Nacos nacos作为sentinel的配置中心 -->
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-datasource-nacos</artifactId>
         </dependency>
 
-        <!-- SpringBoot Actuator -->
+        <!-- SpringBoot Actuator 健康监控 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <!-- SpringBoot redis reactive 用于网关原生 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+        </dependency>
 
     </dependencies>
 
