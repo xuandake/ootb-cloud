@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ootb-gateway" />
+        <module name="common-core" />
         <module name="ootb-system-api" />
         <module name="ootb-auth" />
         <module name="ootb-ops" />
@@ -14,6 +15,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="common-core" target="1.5" />
       <module name="demo" target="1.8" />
       <module name="ootb-auth" target="1.5" />
       <module name="ootb-cloud" target="1.5" />

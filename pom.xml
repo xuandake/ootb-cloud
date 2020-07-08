@@ -41,6 +41,7 @@
         <fastjson.version>1.2.70</fastjson.version>
         <poi.version>3.17</poi.version>
         <common-pool.version>2.6.2</common-pool.version>
+        <lombok.version>1.18.12</lombok.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -161,6 +162,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-pool2</artifactId>
                 <version>${common-pool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
             </dependency>
 
         </dependencies>

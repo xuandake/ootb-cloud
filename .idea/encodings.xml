@@ -6,6 +6,8 @@
     <file url="file://$PROJECT_DIR$/ootb-auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ootb-auth/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ootb-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ootb-common/common-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ootb-common/common-core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ootb-gateway" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ootb-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ootb-gateway/src/main/resources" charset="UTF-8" />

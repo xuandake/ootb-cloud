@@ -1,21 +1,15 @@
 package com.ootb.gateway.handler;
 
-import org.apache.commons.lang3.StringUtils;
-import org.omg.CORBA.ServerRequest;
+import com.common.core.constant.HttpCode;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.boot.autoconfigure.web.reactive.error.DefaultErrorWebExceptionHandler;
 import org.springframework.boot.web.reactive.error.ErrorAttributes;
-import org.springframework.cloud.gateway.support.NotFoundException;
-import org.springframework.cloud.gateway.support.TimeoutException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.reactive.function.server.RequestPredicates;
-import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.RouterFunctions;
-import org.springframework.web.reactive.function.server.ServerResponse;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.reactive.function.server.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -28,48 +22,91 @@ import java.util.Map;
 
 public class GatewayBlockExceptionHandler extends DefaultErrorWebExceptionHandler {
 
-    public GatewayBlockExceptionHandler(ErrorAttributes attributes, ResourceProperties properties,
-                                        ErrorProperties errorProperties, ApplicationContext applicationContext){
-        super(attributes, properties, errorProperties, applicationContext);
+    public GatewayBlockExceptionHandler(ErrorAttributes errorAttributes,
+                                        ResourceProperties resourceProperties,
+                                        ErrorProperties errorProperties,
+                                        ApplicationContext applicationContext){
+        super(errorAttributes, resourceProperties, errorProperties, applicationContext);
     }
 
-//    //@Override
-//    protected Map<String, Object> getErrorAttributes(ServerRequest request, boolean includeStackTrace) {
-//        Throwable error = super.getError((org.springframework.web.reactive.function.server.ServerRequest) request);
-////        log.error(
-////                "请求发生异常，请求URI：{}，请求方法：{}，异常信息：{}",
-////                request.path(), request.methodName(), error.getMessage()
-////        );
-//        String errorMessage;
-//        if (error instanceof NotFoundException) {
-//            String serverId = StringUtils.substringAfterLast(error.getMessage(), "Unable to find instance for ");
-//            serverId = StringUtils.replace(serverId, "\"", StringUtils.EMPTY);
-//            errorMessage = String.format("无法找到%s服务", serverId);
-//        } else if (StringUtils.containsIgnoreCase(error.getMessage(), "connection refused")) {
-//            errorMessage = "目标服务拒绝连接";
-//        } else if (error instanceof TimeoutException) {
-//            errorMessage = "访问服务超时";
-//        } else if (error instanceof ResponseStatusException
-//                && StringUtils.containsIgnoreCase(error.getMessage(), HttpStatus.NOT_FOUND.toString())) {
-//            errorMessage = "未找到该资源";
-//        } else {
-//            errorMessage = "网关转发异常";
-//        }
-//        Map<String, Object> errorAttributes = new HashMap<>(3);
-//        errorAttributes.put("message", errorMessage);
-//        return errorAttributes;
-//    }
-//
-//    @Override
-//    @SuppressWarnings("all")
-//    protected RouterFunction<ServerResponse> getRoutingFunction(ErrorAttributes errorAttributes) {
-//        return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse);
-//    }
-//
-//    @Override
-//    protected int getHttpStatus(Map<String, Object> errorAttributes) {
-//        return HttpStatus.INTERNAL_SERVER_ERROR.value();
-//    }
+    /**
+     * @Author xdk
+     * @Description 异常类型定制化处理
+     * @Date 11:00 20-07-08
+     * @Param [request, includeStackTrace]
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     **/
+    @Override
+    protected  Map<String, Object> getErrorAttributes(ServerRequest request, boolean includeStackTrace){
+        Throwable tableRow = super.getError(request);
+        Map<String, Object> errorAttributes = new HashMap<String, Object>(8);
+        String msg = tableRow.getMessage();
+        int statusCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
 
+        switch (statusCode){
+            case HttpCode.BAD_REQUEST:
+                msg = "请求参数有误";
+                break;
+            case HttpCode.UNAUTHORIZED:
+                msg = "当前请求用户未被授权";
+                break;
+            case HttpCode.FORBIDDEN:
+                msg = "当前请求被拒绝";
+                break;
+            case HttpCode.NOT_FOUND:
+                msg = "无法找到请求资源";
+                break;
+            case HttpCode.METHOD_NOT_ALLOWED:
+                msg = "使用无效的HTTP请求类型对请求的URL进行请求";
+                break;
+            case HttpCode.NOT_ACCEPTABLE:
+                msg = "服务器不支持的content type";
+                break;
+            case HttpCode.REQUEST_TIMEOUT:
+                msg = "请求超时";
+                break;
+            case HttpCode.REQUEST_ENTITY_TOO_LARGE:
+                msg = "请求体太大";
+                break;
+            case HttpCode.REQUEST_URL_TOO_LONG:
+                msg = "请求url太长";
+                break;
+            case HttpCode.INTERNAL_SERVER_ERROR:
+                msg = "服务器内部错误";
+                break;
+            case HttpCode.NOT_IMPLEMENTED:
+                msg = "服务器不支持所需功能";
+                break;
+            case HttpCode.BAD_GATEWAY:
+                msg = "服务器网关错误";
+                break;
+            case HttpCode.SERVICE_UNAVAILABLE:
+                msg = "服务器超载或死机";
+                break;
+            case HttpCode.GATEWAY_TIMEOUT:
+                msg = "服务器网关超时";
+                break;
+            case HttpCode.HTTP_VERSION_NOT_SUPPORTED:
+                msg = "服务器不支持服务“http协议”版本";
+                break;
+            default:
+                break;
+        }
+        errorAttributes.put("message", msg);
+        errorAttributes.put("code", statusCode);
+        errorAttributes.put("timestamp", System.currentTimeMillis());
+        return errorAttributes;
+    }
 
+    @Override
+    @SuppressWarnings("all")
+    protected RouterFunction<ServerResponse> getRoutingFunction(ErrorAttributes errorAttributes) {
+        return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse);
+    }
+
+    @Override
+    protected int getHttpStatus(Map<String, Object> errorAttributes) {
+        // 这里其实可以根据errorAttributes里面的属性定制HTTP响应码
+        return HttpStatus.INTERNAL_SERVER_ERROR.value();
+    }
 }

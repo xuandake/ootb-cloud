@@ -3,24 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>ootb-cloud</artifactId>
+        <artifactId>ootb-common</artifactId>
         <groupId>org.ootb</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ootb-common</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>common-core</artifactId>
 
-    <!--子模块 -->
-<!--    <modules>-->
-<!--        <module>core</module>-->
-<!--    </modules>-->
-
-    <description>ootb-common 通用模块</description>
-    <modules>
-        <module>common-core</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 
 
 </project>
