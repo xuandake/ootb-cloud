@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ootb-common/common-core/common-core.iml" filepath="$PROJECT_DIR$/ootb-common/common-core/common-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/ootb-auth/ootb-auth.iml" filepath="$PROJECT_DIR$/ootb-auth/ootb-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ootb-cloud.iml" filepath="$PROJECT_DIR$/.idea/ootb-cloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/ootb-common/ootb-common.iml" filepath="$PROJECT_DIR$/ootb-common/ootb-common.iml" />

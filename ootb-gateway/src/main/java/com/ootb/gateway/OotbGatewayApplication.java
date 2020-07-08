@@ -11,4 +11,5 @@ public class OotbGatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(OotbGatewayApplication.class, args);
     }
+
 }
