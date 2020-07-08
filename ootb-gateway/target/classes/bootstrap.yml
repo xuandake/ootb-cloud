@@ -1,20 +1,63 @@
-#server:
-#  port: 8080
-
 spring:
+  main:
+    #允许重名的bean可以被覆盖
+    allow-bean-definition-overriding: true
   application:
     name: ootb-gateway
-  profiles:
-    ative: dev
-  main:
-    allow-bean-definition-overriding: true
   cloud:
     nacos:
-      discovery:
-        #注册服务
-        server-addr: 127.0.0.1:9001
+      #nacos文件配置
       config:
-        #服务配置
         server-addr: 127.0.0.1:9001
         file-extension: yml
 
+#----------nacos 配置文件配置-----------------------------------------
+#server:
+#  port: 8080
+#spring:
+#  cloud:
+#    nacos:
+#      #nacos服务注册地址
+#      discovery:
+#        server-addr: 127.0.0.1:9001
+#    #网关配置
+#    gateway:
+#      discovery:
+#        locator:
+#          #是否与服务组件进行结合
+#          enabled: true
+#      #id 路由唯一
+#      #uri:服务在nacos注册的名字 （lb://ootb-auth lb://启用负载均衡）
+#      #如下配置：访问 http://localhost:8080/auth/** 转发到ootb-auth服务
+#      routes:
+#        #认证中心
+#        - id: ootb-auth
+#          uri: lb://ootb-auth
+#          #断言
+#          predicates:
+#            - Path=/auth/**
+#         spring cloud gateway原生限流
+#         需要引入spring-boot-starter-data-redis-reactive报
+#          filters:
+#            - name: RequestRateLimiter
+#              args:
+#                #允许用户每秒处理多少请求
+#                redis-rate-limiter.replenishRate: 1
+#                #令牌容量，允许在一秒钟内完成的最大请求数
+#                redis-rate-limiter.burstCapacity: 3
+#                #用于限流的键的解析器的名字（要配置）
+#                key-resolver: "#{@ipKeyResolver}"
+#        #其他服务模块也如上配置
+#    #限流配置
+#    sentinel:
+#      transport:
+#        dashboard: 127.0.0.1:9011
+#      eager: true
+#      datasource:
+#        ds:
+#          nacos:
+#            serverAddr: 127.0.0.1:9001
+#            dataId: gateway-sentinel-flow
+#            groupId: DEFAULT_GROUP
+#            ruleType: gw-flow
+#            dataType: json
