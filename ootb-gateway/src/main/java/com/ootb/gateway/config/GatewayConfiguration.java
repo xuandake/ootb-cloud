@@ -1,6 +1,7 @@
 package com.ootb.gateway.config;
 
 import com.ootb.gateway.handler.GatewayBlockExceptionHandler;
+import com.ootb.gateway.handler.SentinelExceptionHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.SearchStrategy;
@@ -11,6 +12,7 @@ import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.result.view.ViewResolver;
@@ -34,6 +36,19 @@ public class GatewayConfiguration {
     private final ApplicationContext applicationContext;
     private final List<ViewResolver> viewResolvers;
     private final ServerCodecConfigurer serverCodecConfigurer;
+
+    /**
+     * @Author xdk
+     * @Description //自定义限流异常配置
+     * @Date 14:19 20-07-09
+     * @Param []
+     * @return com.ootb.gateway.handler.SentinelExceptionHandler
+     **/
+    @Bean
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    public SentinelExceptionHandler sentinelExceptionHandler(){
+        return new SentinelExceptionHandler();
+    }
 
     /**
      * @Author xdk

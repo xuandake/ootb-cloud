@@ -1,6 +1,7 @@
 package com.ootb.gateway.handler;
 
 import com.common.core.constant.HttpCode;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.boot.autoconfigure.web.reactive.error.DefaultErrorWebExceptionHandler;
@@ -14,12 +15,12 @@ import java.util.Map;
 
 /**
  * @ClassName GatewayConfiguration
- * @Description 重写限流响应， 改造成JSON格式的响应数据
+ * @Description 网关异常改造成JSON格式的响应数据
  * @Author xdk
  * @Date 20-07-07 18:17
  * @Version 1.0
  **/
-
+@Slf4j
 public class GatewayBlockExceptionHandler extends DefaultErrorWebExceptionHandler {
 
     public GatewayBlockExceptionHandler(ErrorAttributes errorAttributes,
@@ -92,6 +93,8 @@ public class GatewayBlockExceptionHandler extends DefaultErrorWebExceptionHandle
             default:
                 break;
         }
+        log.error("网络请求发生异常，请求URL：{}， 请求方法：{}， 异常信息：{}， 状态码：{}",
+                request.path(), request.method(), tableRow.getMessage(), statusCode );
         errorAttributes.put("message", msg);
         errorAttributes.put("code", statusCode);
         errorAttributes.put("timestamp", System.currentTimeMillis());

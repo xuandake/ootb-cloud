@@ -116,4 +116,9 @@ public class HttpCode {
       **/
       public static final int FAIL = 1;
 
+     /**
+      * @Description    //服务器启用限流
+      **/
+     public static final int SERVER_SENTINEL = 5001;
+
 }
