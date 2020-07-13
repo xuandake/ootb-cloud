@@ -15,15 +15,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class UserDetailsServiceImpl implements CustomUserDetailsService {
 
     @Override
-    public UserDetails loadUserByUserName(String userName, String userType) throws UsernameNotFoundException {
-        //1、通过类型获取用户
-        //2、获取用户可访问权限信息
-        //3、构造UserDetails信息并返回
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return null;
     }
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String name, String userType) throws UsernameNotFoundException {
         return null;
     }
 }
