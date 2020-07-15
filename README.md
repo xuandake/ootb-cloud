@@ -1,2 +1,3 @@
 # ootb-cloud
-ootb-cloud 基于spring cloud 微服务 
+ootb-cloud 基于spring cloud & Alibaba 微服务 
+

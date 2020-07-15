@@ -20,6 +20,7 @@
     <description>ootb-common 通用模块</description>
     <modules>
         <module>common-core</module>
+        <module>common-redis</module>
     </modules>
 
 
