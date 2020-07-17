@@ -3,6 +3,7 @@ package com.ootb.auth.service.mpl;
 import com.ootb.auth.service.CustomUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
 /**
  * @ClassName UserDetailsServiceImpl
@@ -11,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  * @Date 20-07-13 16:11
  * @Version 1.0
  **/
-
+@Component
 public class UserDetailsServiceImpl implements CustomUserDetailsService {
 
     @Override

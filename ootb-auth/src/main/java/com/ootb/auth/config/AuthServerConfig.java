@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -44,6 +45,12 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+
+    private UserDetailsService userDetailsService(){
+        return userDetailsService;
+    }
+
+
     @Bean
     protected JwtAccessTokenConverter jwtAccessTokenConverter(){
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
@@ -64,9 +71,9 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         tokenService.setClientDetailsService(endpoints.getClientDetailsService());
         tokenService.setTokenEnhancer(endpoints.getTokenEnhancer());
         //设置自定义的CustomUserDetailsByNameService
-        if(userDetailsService != null){
+        if(this.userDetailsService != null){
             PreAuthenticatedAuthenticationProvider provider = new PreAuthenticatedAuthenticationProvider();
-            provider.setPreAuthenticatedUserDetailsService(new CustomUserDetailsByNameServiceWrapper(userDetailsService));
+            provider.setPreAuthenticatedUserDetailsService(new CustomUserDetailsByNameServiceWrapper(this.userDetailsService));
             tokenService.setAuthenticationManager(new ProviderManager(Arrays.<AuthenticationProvider>asList(provider)));
         }
         return tokenService;
@@ -82,7 +89,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .accessTokenConverter(jwtAccessTokenConverter())
                 .authenticationManager(this.authenticationManager)
                 .reuseRefreshTokens(true)
-                .userDetailsService(userDetailsService)
+                .userDetailsService(this.userDetailsService)
                 .tokenServices(customTokenService(endpoints));
     }
 

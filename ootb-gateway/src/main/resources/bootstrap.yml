@@ -8,7 +8,7 @@ spring:
     nacos:
       #nacos文件配置
       config:
-        server-addr: 127.0.0.1:9001
+        server-addr: 192.168.1.102:9001
         file-extension: yml
 
 #----------nacos 配置文件配置-----------------------------------------

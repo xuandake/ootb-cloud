@@ -56,6 +56,12 @@
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
 
+        <!-- Mysql Connector -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
         <!-- SpringBoot Actuator 健康监控 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

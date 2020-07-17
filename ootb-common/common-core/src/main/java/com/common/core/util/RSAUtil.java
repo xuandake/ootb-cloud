@@ -26,7 +26,7 @@ import java.util.Properties;
  * @Date 20-07-14 9:20
  **/
 
-@Slf4j
+//@Slf4j
 public class RSAUtil {
 
     /** 算法名称 */
